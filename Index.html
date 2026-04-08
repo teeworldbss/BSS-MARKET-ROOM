@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BSS Business Group | Mobile Node</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* 🎨 CSS EMULATION: SCREENSHOT STYLE */
+    :root {
+      --main-gradient: linear-gradient(135deg, #2e7d32 0%, #00bfa5 100%);
+      --card-bg: #ffffff;
+      --text-main: #455a64;
+      --status-green: #c6ff00;
+    }
+
+    body { 
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+      margin: 0; padding: 0; 
+      background-color: #f0f2f5; 
+      color: var(--text-main);
+      padding-bottom: 70px; /* Space for bottom nav */
+    }
+
+    /* Header & Promo Banner */
+    header {
+      background: var(--main-gradient);
+      padding: 30px 20px;
+      color: white;
+      text-align: center;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .promo-banner {
+      background: rgba(0,0,0,0.2);
+      padding: 10px;
+      border-radius: 12px;
+      margin: 15px 0;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .status-dot {
+      height: 12px; width: 12px;
+      background-color: var(--status-green);
+      border-radius: 50%;
+      margin-right: 10px;
+      box-shadow: 0 0 8px var(--status-green);
+    }
+
+    /* Buttons from Screenshot */
+    .btn-row { display: flex; gap: 10px; justify-content: center; margin-top: 20px; }
+    .btn-main {
+      flex: 1; padding: 12px;
+      border-radius: 10px; border: 2px solid white;
+      background: transparent; color: white;
+      font-weight: bold; cursor: pointer;
+    }
+    .btn-solid { background: white; color: #2e7d32; }
+
+    /* Platform Feature Cards */
+    .container { padding: 20px; }
+    .section-title { font-weight: bold; text-transform: uppercase; color: #78909c; margin-bottom: 15px; }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .icon-box {
+      width: 50px; height: 50px;
+      background: #e8f5e9;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .arrow { position: absolute; right: 20px; color: #cfd8dc; }
+
+    /* Navigation Bar */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: white; display: flex; justify-content: space-around;
+      padding: 10px 0; border-top: 1px solid #ddd;
+      z-index: 1000;
+    }
+
+    .nav-item { 
+      text-align: center; color: #90a4ae; font-size: 0.75rem; 
+      background: none; border: none; cursor: pointer;
+    }
+    .nav-item.active { color: #2e7d32; font-weight: bold; }
+    .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 2px; }
+
+    /* Hidden Sections */
+    section { display: none; animation: slideUp 0.3s ease; }
+    section.active { display: block; }
+    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="font-size: 1.8rem; font-weight: bold;">🛡️ BSS Business Group</div>
+    <div style="font-size: 0.9rem; opacity: 0.9;">v2.1.0 — Marketplace Platform</div>
+    
+    <div class="promo-banner">
+      <div class="status-dot"></div>
+      SYSTEM ONLINE — PROMO MODE ACTIVE
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-main btn-solid" onclick="showSection('register')">Register Free</button>
+      <button class="btn-main" onclick="showSection('login')">Sign In</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="section-title">Platform Features</div>
+
+    <section id="home" class="active">
+      <div class="feature-card" onclick="showSection('marketplace')">
+        <div class="icon-box">🛒</div>
+        <div>
+          <div style="font-weight:bold; font-size:1.1rem;">Marketplace</div>
+          <div style="font-size:0.85rem; color:#78909c;">Browse & post product listings.</div>
+        </div>
+        <div class="arrow">❯</div>
+      </div>
+
+      <div class="feature-card" onclick="showSection('aichat')">
+        <div class="icon-box">🤖</div>
+        <div>
+          <div style="font-weight:bold; font-size:1.1rem;">AI Assistant</div>
+          <div style="font-size:0.85rem; color:#78909c;">Get instant help from our advisor.</div>
+        </div>
+        <div class="arrow">❯</div>
+      </div>
+    </section>
+
+    <section id="register">
+      <div class="feature-card">
+        <div style="width:100%">
+          <h3>Create Account</h3>
+          <input id="rName" type="text" placeholder="Full Name">
+          <input id="rPhone" type="text" placeholder="Phone Number">
+          <button class="btn-main btn-solid" style="background:#2e7d32; width:100%; border:none;" onclick="handleReg()">Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="marketplace">
+      <div class="feature-card" style="flex-direction: column; align-items: flex-start;">
+          <h3>Live Listings</h3>
+          <div id="marketItems">Syncing cloud inventory...</div>
+      </div>
+    </section>
+
+    <section id="dashboard">
+        <div class="feature-card">
+            <div>
+                <h3>System Analytics</h3>
+                <p>Total Users: <span id="userCount">0</span></p>
+                <p>Active Listings: <span id="listCount">0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="aichat">
+        <div class="feature-card" style="height: 300px; flex-direction: column;">
+            <h3>BSS Advisor</h3>
+            <div style="flex-grow:1; background:#f9f9f9; width:100%; border-radius:10px; padding:10px; font-size:0.8rem;">
+                How can I help you today?
+            </div>
+            <input type="text" placeholder="Type a message...">
+        </div>
+    </section>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" onclick="showSection('home', this)">🏠<br>Home</button>
+    <button class="nav-item" onclick="showSection('marketplace', this)">🛒<br>Market</button>
+    <button class="nav-item" onclick="showSection('aichat', this)">🤖<br>AI Chat</button>
+    <button class="nav-item" onclick="showSection('dashboard', this)">👤<br>Dashboard</button>
+  </nav>
+
+  <script>
+    const API_URL = "https://bss-bizgroup-api-480387776403.us-central1.a.run.app";
+
+    function showSection(id, btn) {
+      // Toggle Sections
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+
+      // Update Nav Button Styles
+      if(btn) {
+        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+
+      // Fetch dynamic data based on section
+      if(id === 'marketplace') loadMarket();
+      if(id === 'dashboard') loadStats();
+    }
+
+    async function handleReg() {
+        alert("Connecting to BSS Cloud Node...");
+        // Logic for POST /api/register here
+    }
+
+    async function loadMarket() {
+        try {
+            const res = await fetch(`${API_URL}/api/marketplace`);
+            const data = await res.json();
+            document.getElementById('marketItems').innerHTML = data.map(i => `<b>${i.name}</b> - ₦${i.price}<br>`).join('');
+        } catch (e) { document.getElementById('marketItems').innerText = "Inventory sync error."; }
+    }
+
+    async function loadStats() {
+        try {
+            const res = await fetch(`${API_URL}/api/dashboard`);
+            const data = await res.json();
+            document.getElementById('userCount').innerText = data.users;
+            document.getElementById('listCount').innerText = data.transactions;
+        } catch (e) { console.log("Stats sync error."); }
+    }
+  </script>
+</body>
+</html>
